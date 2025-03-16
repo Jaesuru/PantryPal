@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EE191FA72D83A47A00C6C982 /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EE191FA62D83A47A00C6C982 /* ParseSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		EE4F152F2D80FED50042827B /* PantryPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantryPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE191FA72D83A47A00C6C982 /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = PantryPal;
 			packageProductDependencies = (
+				EE191FA62D83A47A00C6C982 /* ParseSwift */,
 			);
 			productName = PantryPal;
 			productReference = EE4F152F2D80FED50042827B /* PantryPal.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = EE4F15262D80FED50042827B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EE191FA52D83A47A00C6C982 /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EE4F15302D80FED50042827B /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE191FA52D83A47A00C6C982 /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Parse-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.14.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE191FA62D83A47A00C6C982 /* ParseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE191FA52D83A47A00C6C982 /* XCRemoteSwiftPackageReference "Parse-Swift" */;
+			productName = ParseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE4F15272D80FED50042827B /* Project object */;
 }

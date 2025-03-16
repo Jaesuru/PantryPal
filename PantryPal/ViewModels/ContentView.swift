@@ -39,7 +39,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationTitle("Recipe Browser")
+            .navigationTitle("PantryPal")
         }
     }
 }

@@ -29,3 +29,12 @@ struct MealDetailView: View {
         .navigationTitle(meal.strMeal)
     }
 }
+
+#Preview {
+    MealDetailView(meal: MealModel(
+        idMeal: "52772",
+        strMeal: "Spaghetti Carbonara",
+        strMealThumb: "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg",
+        strInstructions: "Cook spaghetti. Fry pancetta. Mix eggs and cheese. Combine everything."
+    ))
+}

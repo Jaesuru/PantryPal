@@ -15,7 +15,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		EED4B4DA2D90924500727785 /* Exceptions for "PantryPal" folder in "PantryPal" target */ = {
+		EED4B50F2D9096B500727785 /* Exceptions for "PantryPal" folder in "PantryPal" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -28,7 +28,7 @@
 		EE4F15312D80FED50042827B /* PantryPal */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				EED4B4DA2D90924500727785 /* Exceptions for "PantryPal" folder in "PantryPal" target */,
+				EED4B50F2D9096B500727785 /* Exceptions for "PantryPal" folder in "PantryPal" target */,
 			);
 			path = PantryPal;
 			sourceTree = "<group>";

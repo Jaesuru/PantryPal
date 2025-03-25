@@ -2,6 +2,7 @@ import Foundation
 
 class MealDBService: ObservableObject {
     @Published var meals: [MealModel] = []
+    @Published var todaysRandomMeals: [MealModel] = []
     
     init() {
         getThreeRandomMeals()
@@ -57,7 +58,7 @@ class MealDBService: ObservableObject {
                     DispatchQueue.main.async {
                         // TheMealDB returns lists by default and we're requesting 1 item, hence why we grab .first
                         if let randomMeal = decodedData.meals?.first {
-                            self.meals.append(randomMeal)
+                            self.todaysRandomMeals.append(randomMeal)
                         }
                     }
                 } catch {

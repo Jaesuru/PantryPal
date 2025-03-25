@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct MealModel: Identifiable, Decodable {
+struct MealModel: Identifiable, Decodable, Hashable {
     let idMeal: String
     let strMeal: String
     let strMealThumb: String

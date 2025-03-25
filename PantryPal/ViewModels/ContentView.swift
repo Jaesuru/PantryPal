@@ -86,7 +86,7 @@ struct ContentView: View {
                                     .overlay(RoundedRectangle(cornerRadius: 8)
                                         .stroke(Color.gray.opacity(0.3), lineWidth: 1))
                                     .padding(.horizontal, 8)
-                                    .frame(height: 150)
+                                    .frame(width: 320, height: 150)
                                     .background(NavigationLink("", destination: MealDetailView(meal: meal)).opacity(0))
                                 }
                             }

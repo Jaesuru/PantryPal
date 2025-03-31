@@ -79,19 +79,17 @@ A super duper cool recipe app that users can use to generate and see different r
 
 ### Models
 
-[Model Name, e.g., User]
+Recipe
 | Property | Type   | Description                                  |
 |----------|--------|----------------------------------------------|
-| username | String | unique id for the user post (default field)   |
-| password | String | user's password for login authentication      |
-| ...      | ...    | ...                          
+| idMeal | String | unique id for the meal   |
+| strMeal | String | meal name     |
+| strMealThumb      | String    | thumbnail/pic
+| strInstruction | String | instructions for making |
+| strIngredients | String | ingredients for recipe
 
 
 ### Networking
 
-- [List of network requests by screen]
-- [Example: `[GET] /users` - to retrieve user data]
-- ...
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+- List of network requests from home screen:
+- [GET] https://www.themealdb.com/api/json/v1/1/search.php?s={meal_name}

@@ -72,7 +72,7 @@ A super duper cool recipe app that users can use to generate and see different r
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section]
+![pantrypal wireframe](https://github.com/user-attachments/assets/d97240c9-c311-435b-a09f-6993f17e7cf0)
 
 ## Schema 
 

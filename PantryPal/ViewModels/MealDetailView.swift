@@ -14,6 +14,7 @@ struct MealDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
+                Spacer().frame(height: 100)
                 AsyncImage(url: URL(string: meal.strMealThumb)) { image in
                     image.resizable()
                         .scaledToFill()
@@ -29,48 +30,62 @@ struct MealDetailView: View {
                     Text(meal.strMeal)
                         .font(.custom("Mont-HeavyDEMO", size: 36))
                         .fontWeight(.bold)
-                        .padding(.horizontal)
+                        .padding(.horizontal, 0)
                         .padding(.top)
                         .frame(maxWidth: .infinity, alignment: .center)
-                    
-                    Divider()
-                        .frame(height: 1)
-                        .background(Color.gray.opacity(0.2))
-                        .padding(.horizontal, 20)
-
-                    // Ingredients List
-                    Text("Ingredients")
-                        .font(.custom("Mont-HeavyDEMO", size: 18))
-                        .fontWeight(.bold)
-                        .padding(.horizontal)
-
-                    VStack(alignment: .leading) {
-                        ForEach(getIngredients(), id: \.self) { ingredient in
-                            Text("• \(ingredient)")
-                                .font(.custom("Mont-ExtraLightDEMO", size: 16))
-                                .padding(.horizontal)
+                    VStack(alignment: .leading, spacing: 16) {
+                        Divider()
+                            .frame(height: 2)
+                            .background(Color.gray.opacity(0.2))
+                            .padding(.horizontal, 0)
+                        
+                        HStack {
+                            Image(systemName: "takeoutbag.and.cup.and.straw.fill")
+                                .foregroundColor(.black)
+                            // Ingredients List
+                            Text("Ingredients")
+                                .font(.custom("Mont-HeavyDEMO", size: 24))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(red: 37/255, green: 95/255, blue: 56/255)) 
                         }
+                        .padding(.leading, 12)
+                        
+                        VStack(alignment: .leading) {
+                            ForEach(getIngredients(), id: \.self) { ingredient in
+                                Text("• \(ingredient)")
+                                    .font(.custom("Mont-ExtraLightDEMO", size: 16))
+                                    .padding(.horizontal)
+                            }
+                        }
+                        
+                        Spacer()
+                        Spacer()
+                        Divider()
+                            .frame(height: 2)
+                            .background(Color.gray.opacity(0.2))
+                            .padding(.horizontal, 0)
+                        
+                        
+                        HStack {
+                            Image(systemName: "list.bullet.rectangle.fill")
+                                .foregroundColor(.black)
+                                .padding(.leading, 12)
+                            // Instructions
+                            Text("Instructions")
+                                .font(.custom("Mont-HeavyDEMO", size: 24))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(red: 37/255, green: 95/255, blue: 56/255))
+                        }
+                        
+                        Text(meal.strInstructions)
+                            .font(.custom("Mont-ExtraLightDEMO", size: 16))
+                            .padding(.horizontal)
+                            .padding(.bottom)
+                            .lineSpacing(8)
                     }
-                    
-                    Spacer()
-                    Divider()
-                        .frame(height: 1)
-                        .background(Color.gray.opacity(0.2))
-                        .padding(.horizontal, 20)
-
-                    // Instructions
-                    Text("Instructions")
-                        .font(.custom("Mont-HeavyDEMO", size: 18))
-                        .fontWeight(.bold)
-                        .padding(.horizontal)
-
-                    Text(meal.strInstructions)
-                        .font(.custom("Mont-ExtraLightDEMO", size: 16))
-                        .padding(.horizontal)
-                        .padding(.bottom)
-                        .lineSpacing(8)
+                    .background(Color.gray.opacity(0.05))
                 }
-                .padding(.top) // Add space at the top of the content
+                .padding(.top, 30)
             }
         }
         .edgesIgnoringSafeArea(.top)

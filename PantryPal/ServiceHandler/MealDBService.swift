@@ -5,7 +5,7 @@ class MealDBService: ObservableObject {
     @Published var todaysRandomMeals: [MealModel] = []
     
     init() {
-        getThreeRandomMeals()
+        getRandomMeals()
     }
 
     func fetchMeals(query: String) {
@@ -39,12 +39,12 @@ class MealDBService: ObservableObject {
     /**
      * getThreeRandomMeals -> Returns a list of meals randomly grabbed from TheMealDB API.
      */
-    func getThreeRandomMeals() {
+    func getRandomMeals() {
 
         guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php") else {return}
         
-        // Simple for loop that iterates 3 times. Could be abstracted to use a constant we define above, but for now this works.
-        for _ in 0..<3 {
+        // Simple for loop that iterates 3 or more times. Could be abstracted to use a constant we define above, but for now this works.
+        for _ in 0..<10 {
             
             URLSession.shared.dataTask(with: url) { data, response, error in
                 

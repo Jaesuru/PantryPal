@@ -57,14 +57,15 @@ struct ContentView: View {
                 
                 ScrollView {
                     HStack {
-                        Text("Today's Curated Meals")
-                            .font(.custom("Mont-ExtraLightDEMO", size: 24))
+                        Text("Fresh Finds")
+                            .font(.custom("Mont-ExtraLightDEMO", size: 36))
                             .fontWeight(.bold)
                             .foregroundColor(Color(red: 37/255, green: 95/255, blue: 56/255))                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(10)
-                            .padding(.leading, 5)
+                            .padding(.leading, 10)
                     }.frame(width: .infinity, height: 150)
                         .padding(.top, -60)
+                    
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack {
                             ForEach(mealDBService.todaysRandomMeals, id: \.self) { meal in
@@ -73,7 +74,7 @@ struct ContentView: View {
                                         AsyncImage(url: URL(string: meal.strMealThumb)) { image in
                                             image.resizable()
                                                 .scaledToFill()
-                                                .frame(height: 150)
+                                                .frame(width: 280, height: 200)
                                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                                 .clipped()
                                                 .overlay(
@@ -97,13 +98,10 @@ struct ContentView: View {
                                         }
                                     }
                                     .padding(20)
-                                    .background(Color.white)
                                     .cornerRadius(10)
                                     .shadow(color: Color.black.opacity(0.1), radius: 4, x:0, y: 2)
                                     .foregroundColor(.black)
                                     .font(.system(size: 16, weight: .regular, design: .rounded))
-                                    .overlay(RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.gray.opacity(0.3), lineWidth: 1))
                                     .padding(.horizontal, 8)
                                     .frame(width: 320, height: 150)
                                     .background(NavigationLink("", destination: MealDetailView(meal: meal)).opacity(0))
@@ -122,10 +120,10 @@ struct ContentView: View {
                     if searchPerformed {
                         HStack {
                             Text("Results for \"\(lastSearchQuery)\"")
-                                .font(.custom("Mont-ExtraLightDEMO", size: 24))
+                                .font(.custom("Mont-ExtraLightDEMO", size: 32))
                                 .fontWeight(.bold)
                                 .foregroundColor(Color(red: 37/255, green: 95/255, blue: 56/255))                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, 5)
+                                .padding(.leading, 14)
 
                             
                             Button(action: {
@@ -135,14 +133,20 @@ struct ContentView: View {
                                 mealDBService.meals = [] // Assuming MealDBService has a meals property
                             }) {
                                 Text("Clear Results")
-                                    .font(.system(size: 12, weight: .medium))
-                                    .foregroundColor(.red)
-                                    .padding(.trailing, 20)
-                                    .padding(.vertical, 5)
+                                    .font(.system(size: 8, weight: .medium))
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 4)
+                                    .background(Color.black)
                                     .cornerRadius(8)
                             }
                         }
                         .padding(10)
+                    } else {
+                        Image("PantryPalLogo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
                     }
                     
                     LazyVStack {

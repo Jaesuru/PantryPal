@@ -44,13 +44,13 @@ A super duper cool recipe app that users can use to generate and see different r
 
 ### 2. Screen Archetypes
 
-- [ ] [**Screen Name, e.g., Login Screen**]
-* [Required User Feature: User can log in.]
-- [ ] [**Another Screen Name**]
-* [Associated required user story]
-...
-...
-...
+- [ ] [**Login Screen**]
+* Required User Feature: User can log in.
+- [ ] [**Home Screen**]
+* User can search for recipes, and see random recipes initially too.
+- [ ] [**Detailed Recipe Screen**]
+* User can select recipe result and view a detailed card about the recipes. 
+
 
 ### 3. Navigation
 
@@ -58,26 +58,21 @@ A super duper cool recipe app that users can use to generate and see different r
 
 
 - [ ] [First Tab, e.g., Home Feed]
-- [ ] [Second Tab, e.g., Profile]
-...
-...
-...
+- [ ] [Second Tab, e.g., Favorited Recipes]
+- [ ] [Third Tab, e.g., Profile]
+
 
 **Flow Navigation** (Screen to Screen)
 
-- [ ] [**Screen Name**]
-  * Leads to [**Next Screen**]
-- [ ] [**Another Screen Name**]
-  * Leads to [**Another Screen**] 
+- [ ] [**Login Screen**]
+  * Leads to [**Home Screen**]
+- [ ] [**Home Screen**]
+  * Leads to [**Detailed Recipe View**] 
 
 
 ## Wireframes
 
 [Add picture of your hand sketched wireframes in this section]
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
 
 ## Schema 
 

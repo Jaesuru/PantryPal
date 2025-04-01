@@ -55,6 +55,12 @@ struct ContentView: View {
                 .padding(.horizontal, 30)
                 .padding(.top, -90)
                 
+                Divider()
+                    .frame(height: 1)
+                    .background(Color(red: 31/255, green: 125/255, blue: 83/255))
+                    .padding(.horizontal, 20)
+                    .padding(.top, -30)
+                
                 ScrollView {
                     HStack {
                         Text("Fresh Finds")
@@ -64,7 +70,7 @@ struct ContentView: View {
                             .padding(10)
                             .padding(.leading, 10)
                     }.frame(width: .infinity, height: 150)
-                        .padding(.top, -60)
+                        .padding(.top, -40)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack {

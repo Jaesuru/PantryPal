@@ -55,68 +55,76 @@ struct ContentView: View {
                 .padding(.horizontal, 30)
                 .padding(.top, -90)
                 
-                Divider()
-                    .frame(height: 1)
-                    .background(Color(red: 31/255, green: 125/255, blue: 83/255))
-                    .padding(.horizontal, 20)
-                    .padding(.top, -30)
                 
                 ScrollView {
-                    HStack {
-                        Text("Fresh Finds")
-                            .font(.custom("Mont-ExtraLightDEMO", size: 36))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color(red: 37/255, green: 95/255, blue: 56/255))                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(10)
-                            .padding(.leading, 10)
-                    }.frame(width: .infinity, height: 150)
+                    VStack {
+                        Divider()
+                            .frame(height: 1)
+                            .background(Color(red: 31/255, green: 125/255, blue: 83/255))
+                            .padding(.horizontal, 20)
+                        HStack {
+                            Text("Fresh Finds")
+                                .font(.custom("Mont-ExtraLightDEMO", size: 36))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(red: 37/255, green: 95/255, blue: 56/255))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(10)
+                                .padding(.leading, 10)
+                        }
+                        .frame(width: .infinity, height: 150)
                         .padding(.top, -40)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack {
-                            ForEach(mealDBService.todaysRandomMeals, id: \.self) { meal in
-                                NavigationLink(destination: MealDetailView(meal: meal)) {
-                                    ZStack {
-                                        AsyncImage(url: URL(string: meal.strMealThumb)) { image in
-                                            image.resizable()
-                                                .scaledToFill()
-                                                .frame(width: 280, height: 200)
-                                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                                .clipped()
-                                                .overlay(
-                                                    Color.black.opacity(0.1)
-                                                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                                                )
-                                        } placeholder: {
-                                            ProgressView()
-                                                .frame(height: 150)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack {
+                                ForEach(mealDBService.todaysRandomMeals, id: \.self) { meal in
+                                    NavigationLink(destination: MealDetailView(meal: meal)) {
+                                        ZStack {
+                                            AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                                image.resizable()
+                                                
+                                                    .scaledToFill()
+                                                    .frame(width: 280, height: 200)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                    .clipped()
+                                                    .overlay(
+                                                        Color.black.opacity(0.1)
+                                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                    )
+                                                
+                                                    .shadow(color: Color.black.opacity(0.4), radius: 1, x: 6, y: 2)
+                                
+                                            } placeholder: {
+                                                ProgressView()
+                                                    .frame(height: 150)
+                                            }
+                                            
+                                            VStack {
+                                                Spacer()
+                                                Text(meal.strMeal)
+                                                    .font(.custom("Mont-HeavyDEMO", size: 24))
+                                                    .fontWeight(.bold)
+                                                    .foregroundColor(.white)
+                                                    .padding()
+                                                    .frame(maxWidth: .infinity, alignment: .center)
+                                                    .cornerRadius(10)
+                                            }
                                         }
-                                        
-                                        VStack {
-                                            Spacer()
-                                            Text(meal.strMeal)
-                                                .font(.custom("Mont-HeavyDEMO", size: 24))
-                                                .fontWeight(.bold)
-                                                .foregroundColor(.white)
-                                                .padding()
-                                                .frame(maxWidth: .infinity, alignment: .center)
-                                                .cornerRadius(10)
-                                        }
+                                        .padding(20)
+                                        .cornerRadius(10)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 4, x:0, y: 2)
+                                        .foregroundColor(.black)
+                                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                                        .padding(.horizontal, 8)
+                                        .frame(width: 320, height: 150)
                                     }
-                                    .padding(20)
-                                    .cornerRadius(10)
-                                    .shadow(color: Color.black.opacity(0.1), radius: 4, x:0, y: 2)
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 16, weight: .regular, design: .rounded))
-                                    .padding(.horizontal, 8)
-                                    .frame(width: 320, height: 150)
-                                    .background(NavigationLink("", destination: MealDetailView(meal: meal)).opacity(0))
                                 }
                             }
                         }
-                    }.frame(width: .infinity, height: 200)
+                        .frame(width: .infinity, height: 200)
                         .padding(.top, -60)
                         .padding(.bottom, 50)
+                    }
+
                     
                     Divider()
                         .frame(height: 1)
@@ -169,6 +177,7 @@ struct ContentView: View {
                                                 Color.black.opacity(0.1)
                                                     .clipShape(RoundedRectangle(cornerRadius: 15))
                                             )
+                                            .shadow(color: Color.black.opacity(0.4), radius: 1, x: 6, y: 2)
                                     } placeholder: {
                                         ProgressView()
                                             .frame(height: 150)
@@ -192,6 +201,12 @@ struct ContentView: View {
                         }
                     }
                 }
+            }
+            .refreshable {
+                mealDBService.todaysRandomMeals.removeAll() // Clear old meals
+                mealDBService.getRandomMeals() // Fetch new ones
+                mealDBService.meals.removeAll()
+                mealDBService.fetchMeals(query: lastSearchQuery)
             }
         }
     }

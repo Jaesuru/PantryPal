@@ -28,7 +28,7 @@ class MealDBService: ObservableObject {
             do {
                 let decodedData = try JSONDecoder().decode(MealResponse.self, from: data)
                 DispatchQueue.main.async {
-                    self.meals = decodedData.meals ?? []
+                    self.meals = decodedData.meals?.shuffled() ?? []
                 }
             } catch {
                 print("Error decoding: \(error)")
@@ -36,37 +36,44 @@ class MealDBService: ObservableObject {
         }.resume()
     }
 
-    /**
-     * getThreeRandomMeals -> Returns a list of meals randomly grabbed from TheMealDB API.
-     */
     func getRandomMeals() {
-
-        guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php") else {return}
+        DispatchQueue.main.async {
+            self.todaysRandomMeals.removeAll() // Clear old meals before fetching
+        }
         
-        // Simple for loop that iterates 3 or more times. Could be abstracted to use a constant we define above, but for now this works.
-        for _ in 0..<10 {
+        let dispatchGroup = DispatchGroup()
+        var newMeals: [MealModel] = []
+        
+        for _ in 0..<20 { // change for amount
+            dispatchGroup.enter()
+            
+            guard let url = URL(string: "https://www.themealdb.com/api/json/v1/1/random.php") else {
+                dispatchGroup.leave()
+                return
+            }
             
             URLSession.shared.dataTask(with: url) { data, response, error in
-                
                 guard let data = data else {
                     print("Error: No data received")
+                    dispatchGroup.leave()
                     return
                 }
                 
                 do {
                     let decodedData = try JSONDecoder().decode(MealResponse.self, from: data)
-                    DispatchQueue.main.async {
-                        // TheMealDB returns lists by default and we're requesting 1 item, hence why we grab .first
-                        if let randomMeal = decodedData.meals?.first {
-                            self.todaysRandomMeals.append(randomMeal)
-                        }
+                    if let randomMeal = decodedData.meals?.first {
+                        newMeals.append(randomMeal)
                     }
                 } catch {
                     print("Error decoding: \(error)")
                 }
-                
+                dispatchGroup.leave()
             }.resume()
         }
         
+        dispatchGroup.notify(queue: .main) {
+            self.todaysRandomMeals = newMeals // Ensure UI updates
+        }
     }
+
 }

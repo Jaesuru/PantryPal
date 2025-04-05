@@ -10,7 +10,7 @@ import ParseSwift
 
 @main
 struct PantryPalApp: App {
-    
+    @AppStorage("isDarkMode") private var isDarkMode = false
     init() {
         ParseSwift.initialize(applicationId: "nhJFy7RKNyvOXLY5FpuF0E9kpQJ614SQLkD0IQqq",
                               clientKey: "4zdYq91YAFCvM6ZDz1e49bVHDpSvHrNuqv0jbtG4",
@@ -22,6 +22,7 @@ struct PantryPalApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(isDarkMode ? .dark : .light) 
         }
     }
 }

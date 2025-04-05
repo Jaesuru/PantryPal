@@ -18,7 +18,6 @@ A super duper cool recipe app that users can use to generate and see different r
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
 - **Category:** Utility
 - **Mobile:** It is mobile-only for Apple devices.
 - **Story:**  There is no story.
@@ -32,10 +31,13 @@ A super duper cool recipe app that users can use to generate and see different r
 
 **Required Must-have Stories**
 
-* User can see home option where there is a search bar for the main feature of the app-- searching for recipes.
-* User will also be able to see a variety of random recipes on the home menu just for extra ideas.
-* User will be able to search and see different results every time.
-* Users will be able to click on each individual recipes and view detailed information like instructions, ingredients, and other details. 
+[x] User can see home option where there is a search bar for the main feature of the app-- searching for recipes.
+[x] User will also be able to see a variety of random recipes on the home menu just for extra ideas.
+[x] User will be able to search and see different results every time.
+[x] Users will be able to click on each individual recipes and view detailed information like instructions, ingredients, and other details. 
+
+GIF Demo: 
+https://imgur.com/a/CeYjxSW
 
 **Optional Nice-to-have Stories**
 

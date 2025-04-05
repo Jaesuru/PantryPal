@@ -211,8 +211,6 @@ struct ContentView: View {
                     mealDBService.meals.removeAll()
                     mealDBService.fetchMeals(query: lastSearchQuery)
                 }
-                
-                .navigationTitle("Home")
             }
             .tabItem {
                       Label("Home", systemImage: "house")
@@ -230,26 +228,30 @@ struct ContentView: View {
    
 }
 
-
-
 struct SettingsView: View {
     @Binding var isDarkMode: Bool
 
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Settings")
-                .font(.title)
-            Toggle(isOn: $isDarkMode) {
-                Text(isDarkMode ? "Dark Mode" : "Light Mode")
-                    .font(.headline)
+            VStack(spacing: 20) {
+                Text("Settings")
+                    .font(.custom("Mont-ExtraLightDEMO", size: 32))
+                    .fontWeight(.bold)
+
+                
+
+                Toggle(isOn: $isDarkMode) {
+                    Text(isDarkMode ? "Dark Mode" : "Light Mode")
+                        .font(.headline)
+                }
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(10)
+                .toggleStyle(SwitchToggleStyle(tint: .blue))
+                
+                Spacer()
             }
             .padding()
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(10)
-            .toggleStyle(SwitchToggleStyle(tint: .blue))
         }
-        .padding()
-    }
 }
 
 #Preview {

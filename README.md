@@ -36,8 +36,7 @@ A super duper cool recipe app that users can use to generate and see different r
 [x] User will be able to search and see different results every time.
 [x] Users will be able to click on each individual recipes and view detailed information like instructions, ingredients, and other details. 
 
-GIF Demo: 
-https://imgur.com/a/CeYjxSW
+![Kapture 2025-04-05 at 12 41 31](https://github.com/user-attachments/assets/22c3c684-fc53-4d0a-939a-aa10e28b4882)
 
 **Optional Nice-to-have Stories**
 

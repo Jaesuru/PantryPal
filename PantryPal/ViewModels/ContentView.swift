@@ -238,46 +238,61 @@ struct ContentView: View {
 struct favoritesView : View{
     @EnvironmentObject var favoriteManager : MealDBService
     var body : some View{
-        VStack(spacing: 20){
+        VStack(){
             Text("Favorites")
                 .font(.custom("Mont-ExtraLightDEMO", size: 32))
                 .fontWeight(.bold)
-            LazyVStack {
-                ForEach(favoriteManager.meals, id: \.self) { meal in
-                    NavigationLink(destination: MealDetailView(meal: meal)) {
-                        ZStack {
-                            AsyncImage(url: URL(string: meal.strMealThumb)) { image in
-                                image.resizable()
-                                    .scaledToFill()
-                                    .frame(height: 150)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                                    .clipped()
-                                    .overlay(
-                                        Color.black.opacity(0.1)
-                                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                                    )
-                                    .shadow(color: Color.black.opacity(0.4), radius: 1, x: 6, y: 2)
-                            } placeholder: {
-                                ProgressView()
-                                    .frame(height: 150)
-                            }
-                            
-                            VStack {
-                                Spacer()
-                                Text(meal.strMeal)
-                                    .font(.custom("Mont-HeavyDEMO", size: 24))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .cornerRadius(10)
+            Spacer()
+            VStack {
+                ScrollView(showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(favoriteManager.favorites, id: \.self) { meal in
+                            NavigationLink(destination: MealDetailView(meal: meal)) {
+                                ZStack {
+                                    AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                        image.resizable()
+                                        
+                                            .scaledToFill()
+                                            .frame(width: 300, height: 200)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            .clipped()
+                                            .overlay(
+                                                Color.black.opacity(0.1)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            )
+                                        
+                                            .shadow(color: Color.black.opacity(0.4), radius: 1, x: 6, y: 2)
+                                        
+                                    } placeholder: {
+                                        ProgressView()
+                                            .frame(height: 150)
+                                    }
+                                    
+                                    VStack {
+                                        Spacer()
+                                        Text(meal.strMeal)
+                                            .font(.custom("Mont-HeavyDEMO", size: 24))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding()
+                                            .frame(maxWidth: .infinity, alignment: .center)
+                                            .cornerRadius(10)
+                                    }
+                                }
+                                .padding(20)
+                                .cornerRadius(10)
+                                .shadow(color: Color.black.opacity(0.1), radius: 4, x:0, y: 2)
+                                .foregroundColor(.black)
+                                .font(.system(size: 16, weight: .regular, design: .rounded))
+                                .padding(.horizontal, 8)
+                                .frame(width: .infinity, height: .infinity)
                             }
                         }
-                        .frame(width: 350, height: 150)
-                        .background(NavigationLink("", destination: MealDetailView(meal: meal)).opacity(0))
-                        .padding(.bottom, 20)
                     }
                 }
+                .frame(width: .infinity, height: .infinity, alignment: .top)
+                .padding(.top, -10)
+                .padding(.bottom, 50)
             }
             .onAppear{
                 print("bouta show some favorites")

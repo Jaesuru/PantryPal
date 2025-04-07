@@ -10,11 +10,16 @@ class MealDBService: ObservableObject {
     }
     
     func addFavorite(meal : MealModel){
-        print("Adding \(meal.id) favorite")
+        //adds meal to favorites array if the meal.id isn't already in the list
+        //if it is, remove find the index and remove that meal
+        //print("Adding \(meal.id) favorite")
         if(!favorites.contains(where : {$0.id == meal.id})){
         favorites.append(meal)
         }else{
-            print("Already in favorites!")
+            //print("Already in favorites! removing it now lol")
+            if let index = favorites.firstIndex(of: meal){
+                favorites.remove(at: index)
+            }
         }
     }
     

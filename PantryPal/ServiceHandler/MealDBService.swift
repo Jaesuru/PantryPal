@@ -3,23 +3,23 @@ import Foundation
 class MealDBService: ObservableObject {
     @Published var meals: [MealModel] = []
     @Published var todaysRandomMeals: [MealModel] = []
-    @Published var favorites : [String] = []
+    @Published var favorites : [MealModel] = []
     
     init() {
         getRandomMeals()
     }
     
-    func addFavorite(id : String){
-        print("Adding \(id) favorite")
-        if(!favorites.contains(id)){
-        favorites.append(id)
+    func addFavorite(meal : MealModel){
+        print("Adding \(meal.id) favorite")
+        if(!favorites.contains(where : {$0.id == meal.id})){
+        favorites.append(meal)
         }else{
             print("Already in favorites!")
         }
     }
     
-    func isFavorited(id: String) -> Bool{
-        return favorites.contains(id)
+    func isFavorited(meal: MealModel) -> Bool{
+        return favorites.contains(where : {$0.id == meal.id})
     }
 
     func fetchMeals(query: String) {

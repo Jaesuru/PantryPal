@@ -216,7 +216,7 @@ struct ContentView: View {
                       Label("Home", systemImage: "house")
                      }
             NavigationView {
-                        favoritesView()
+                favoritesView().environmentObject(mealDBService)
                        }
             .tabItem{
                 Label("Favorites", systemImage: "star")
@@ -236,8 +236,53 @@ struct ContentView: View {
 }
 
 struct favoritesView : View{
+    @EnvironmentObject var favoriteManager : MealDBService
     var body : some View{
-        Text("Favorites")
+        VStack(spacing: 20){
+            Text("Favorites")
+                .font(.custom("Mont-ExtraLightDEMO", size: 32))
+                .fontWeight(.bold)
+            LazyVStack {
+                ForEach(favoriteManager.meals, id: \.self) { meal in
+                    NavigationLink(destination: MealDetailView(meal: meal)) {
+                        ZStack {
+                            AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                image.resizable()
+                                    .scaledToFill()
+                                    .frame(height: 150)
+                                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                                    .clipped()
+                                    .overlay(
+                                        Color.black.opacity(0.1)
+                                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                                    )
+                                    .shadow(color: Color.black.opacity(0.4), radius: 1, x: 6, y: 2)
+                            } placeholder: {
+                                ProgressView()
+                                    .frame(height: 150)
+                            }
+                            
+                            VStack {
+                                Spacer()
+                                Text(meal.strMeal)
+                                    .font(.custom("Mont-HeavyDEMO", size: 24))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .cornerRadius(10)
+                            }
+                        }
+                        .frame(width: 350, height: 150)
+                        .background(NavigationLink("", destination: MealDetailView(meal: meal)).opacity(0))
+                        .padding(.bottom, 20)
+                    }
+                }
+            }
+            .onAppear{
+                print("bouta show some favorites")
+            }
+        }
     }
 }
 

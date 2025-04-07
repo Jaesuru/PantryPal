@@ -112,8 +112,8 @@ struct MealDetailView: View {
             ,trailing:
                                 HStack {
                                     Button(action: {
-                                        favoriteManager.addFavorite(id : meal.id)
-                                        print(favoriteManager.isFavorited(id: meal.id))
+                                        favoriteManager.addFavorite(meal : meal)
+                                        print(favoriteManager.isFavorited(meal : meal))
                                     }) {
                                         ZStack {
                                             // Transparent circle background
@@ -122,7 +122,7 @@ struct MealDetailView: View {
                                                 .frame(width: 35, height: 35)
                                             
                                             // Back button image
-                                            if(favoriteManager.isFavorited(id: meal.id)){
+                                            if(favoriteManager.isFavorited(meal : meal)){
                                                 Image(systemName: "star.fill")
                                                     .foregroundColor(.black)
                                                     .imageScale(.large)

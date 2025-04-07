@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var mealDBService = MealDBService()
+    @EnvironmentObject var mealDBService : MealDBService
     @State private var searchText = ""
     @State private var searchPerformed = false
     @State private var lastSearchQuery = ""
@@ -216,16 +216,29 @@ struct ContentView: View {
                       Label("Home", systemImage: "house")
                      }
             NavigationView {
+                        favoritesView()
+                       }
+            .tabItem{
+                Label("Favorites", systemImage: "star")
+            }
+            NavigationView {
                            SettingsView(isDarkMode: $isDarkMode)
                        }
             .tabItem {
                 Label("Settings", systemImage: "gear")
                     }
+            
         }
         
     }
     
    
+}
+
+struct favoritesView : View{
+    var body : some View{
+        Text("Favorites")
+    }
 }
 
 struct SettingsView: View {
@@ -256,4 +269,5 @@ struct SettingsView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(MealDBService())
 }

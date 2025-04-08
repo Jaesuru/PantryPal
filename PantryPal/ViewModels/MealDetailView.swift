@@ -10,6 +10,7 @@ import SwiftUI
 struct MealDetailView: View {
     let meal: MealModel
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var favoriteManager : MealDBService
 
     var body: some View {
         ScrollView {
@@ -108,6 +109,32 @@ struct MealDetailView: View {
                     }
                 }
             }
+            ,trailing:
+                                HStack {
+                                    Button(action: {
+                                        favoriteManager.addFavorite(meal : meal)
+                                        print(favoriteManager.isFavorited(meal : meal))
+                                    }) {
+                                        ZStack {
+                                            // Transparent circle background
+                                            Circle()
+                                                .fill(Color.white.opacity(0.8))
+                                                .frame(width: 35, height: 35)
+                                            
+                                            // Back button image
+                                            if(favoriteManager.isFavorited(meal : meal)){
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.black)
+                                                    .imageScale(.large)
+                                            }
+                                            else{
+                                                Image(systemName: "star")
+                                                    .foregroundColor(.black)
+                                                    .imageScale(.large)
+                                            }
+                                        }
+                                    }
+                                }
         )
     }
 

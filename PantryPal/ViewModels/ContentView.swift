@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var mealDBService = MealDBService()
+    @EnvironmentObject var mealDBService : MealDBService
     @State private var searchText = ""
     @State private var searchPerformed = false
     @State private var lastSearchQuery = ""
@@ -216,16 +216,89 @@ struct ContentView: View {
                       Label("Home", systemImage: "house")
                      }
             NavigationView {
+                favoritesView().environmentObject(mealDBService)
+                       }
+            .tabItem{
+                Label("Favorites", systemImage: "star")
+            }
+            NavigationView {
                            SettingsView(isDarkMode: $isDarkMode)
                        }
             .tabItem {
                 Label("Settings", systemImage: "gear")
                     }
+            
         }
         
     }
     
    
+}
+
+struct favoritesView : View{
+    @EnvironmentObject var favoriteManager : MealDBService
+    var body : some View{
+        VStack(spacing: 20){
+            Text("Favorites")
+                .font(.custom("Mont-ExtraLightDEMO", size: 32))
+                .fontWeight(.bold)
+            Spacer()
+            VStack {
+                ScrollView(showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(favoriteManager.favorites, id: \.self) { meal in
+                            NavigationLink(destination: MealDetailView(meal: meal)) {
+                                ZStack {
+                                    AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                        image.resizable()
+                                        
+                                            .scaledToFill()
+                                            .frame(width: 300, height: 200)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            .clipped()
+                                            .overlay(
+                                                Color.black.opacity(0.1)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            )
+                                        
+                                            .shadow(color: Color.black.opacity(0.4), radius: 1, x: 6, y: 2)
+                                        
+                                    } placeholder: {
+                                        ProgressView()
+                                            .frame(height: 150)
+                                    }
+                                    
+                                    VStack {
+                                        Spacer()
+                                        Text(meal.strMeal)
+                                            .font(.custom("Mont-HeavyDEMO", size: 24))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding()
+                                            .frame(maxWidth: .infinity, alignment: .center)
+                                            .cornerRadius(10)
+                                    }
+                                }
+                                .padding(20)
+                                .cornerRadius(10)
+                                .shadow(color: Color.black.opacity(0.1), radius: 4, x:0, y: 2)
+                                .foregroundColor(.black)
+                                .font(.system(size: 16, weight: .regular, design: .rounded))
+                                .padding(.horizontal, 8)
+                                .frame(width: .infinity, height: .infinity)
+                            }
+                        }
+                    }
+                }
+                .frame(width: .infinity, height: .infinity, alignment: .top)
+                .padding(.top, -10)
+                .padding(.bottom, 50)
+            }
+            .onAppear{
+                print("bouta show some favorites")
+            }
+        }
+    }
 }
 
 struct SettingsView: View {
@@ -236,8 +309,6 @@ struct SettingsView: View {
                 Text("Settings")
                     .font(.custom("Mont-ExtraLightDEMO", size: 32))
                     .fontWeight(.bold)
-
-                
 
                 Toggle(isOn: $isDarkMode) {
                     Text(isDarkMode ? "Dark Mode" : "Light Mode")
@@ -256,4 +327,5 @@ struct SettingsView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(MealDBService())
 }

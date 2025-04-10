@@ -31,16 +31,17 @@ A super duper cool recipe app that users can use to generate and see different r
 
 **Required Must-have Stories**
 
-[x] User can see home option where there is a search bar for the main feature of the app-- searching for recipes.
-[x] User will also be able to see a variety of random recipes on the home menu just for extra ideas.
-[x] User will be able to search and see different results every time.
-[x] Users will be able to click on each individual recipes and view detailed information like instructions, ingredients, and other details. 
+- [x] User can see home option where there is a search bar for the main feature of the app-- searching for recipes.
+- [x] User will also be able to see a variety of random recipes on the home menu just for extra ideas.
+- [x] User will be able to search and see different results every time.
+- [x] Users will be able to click on each individual recipes and view detailed information like instructions, ingredients, and other details. 
 
 ![Kapture 2025-04-05 at 12 41 31](https://github.com/user-attachments/assets/22c3c684-fc53-4d0a-939a-aa10e28b4882)
 
 **Optional Nice-to-have Stories**
-[] User will be able to input multiple food into the search bar for more specific searches.
-[] Users will be able to use a filter option to sort out any desirable recipes.
+- [] User will be able to input multiple food into the search bar for more specific searches. <br>
+- [] Users will be able to use a filter option to sort out any desirable recipes.
+<br>
 
 ### 2. Screen Archetypes
 - [x] [**Home Screen**]

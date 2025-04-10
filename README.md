@@ -39,17 +39,13 @@ A super duper cool recipe app that users can use to generate and see different r
 ![Kapture 2025-04-05 at 12 41 31](https://github.com/user-attachments/assets/22c3c684-fc53-4d0a-939a-aa10e28b4882)
 
 **Optional Nice-to-have Stories**
-
-* User will be able to input multiple food into the search bar for more specific searches.
-* Users will be able to use a filter option to sort out any desirable recipes.
+[] User will be able to input multiple food into the search bar for more specific searches.
+[] Users will be able to use a filter option to sort out any desirable recipes.
 
 ### 2. Screen Archetypes
-
-- [ ] [**Login Screen**]
-* Required User Feature: User can log in.
-- [ ] [**Home Screen**]
+- [x] [**Home Screen**]
 * User can search for recipes, and see random recipes initially too.
-- [ ] [**Detailed Recipe Screen**]
+- [x] [**Detailed Recipe Screen**]
 * User can select recipe result and view a detailed card about the recipes. 
 
 

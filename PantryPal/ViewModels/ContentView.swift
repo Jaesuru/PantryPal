@@ -73,7 +73,7 @@ struct ContentView: View {
                                     .padding(10)
                                     .padding(.leading, 10)
                             }
-                            .frame(width: .infinity, height: 150)
+                            .frame(width: CGFloat.infinity, height: 150)
                             .padding(.top, -40)
                             
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -227,7 +227,6 @@ struct ContentView: View {
             .tabItem {
                 Label("Settings", systemImage: "gear")
                     }
-            
         }
         
     }

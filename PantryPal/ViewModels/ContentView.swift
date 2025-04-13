@@ -238,7 +238,7 @@ struct ContentView: View {
 struct favoritesView : View{
     @EnvironmentObject var favoriteManager : MealDBService
     var body : some View{
-        VStack(){
+        VStack(spacing: 20){
             Text("Favorites")
                 .font(.custom("Mont-ExtraLightDEMO", size: 32))
                 .fontWeight(.bold)
@@ -309,8 +309,6 @@ struct SettingsView: View {
                 Text("Settings")
                     .font(.custom("Mont-ExtraLightDEMO", size: 32))
                     .fontWeight(.bold)
-
-                
 
                 Toggle(isOn: $isDarkMode) {
                     Text(isDarkMode ? "Dark Mode" : "Light Mode")

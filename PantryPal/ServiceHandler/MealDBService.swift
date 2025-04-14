@@ -9,19 +9,33 @@ class MealDBService: ObservableObject {
         getRandomMeals()
     }
     
-    func addFavorite(meal : MealModel){
-        //adds meal to favorites array if the meal.id isn't already in the list
-        //if it is, remove find the index and remove that meal
-        //print("Adding \(meal.id) favorite")
-        if(!favorites.contains(where : {$0.id == meal.id})){
-        favorites.append(meal)
-        }else{
-            //print("Already in favorites! removing it now lol")
-            if let index = favorites.firstIndex(of: meal){
-                favorites.remove(at: index)
+//    func addFavorite(meal : MealModel){
+//        //adds meal to favorites array if the meal.id isn't already in the list
+//        //if it is, remove find the index and remove that meal
+//        //print("Adding \(meal.id) favorite")
+//        if(!favorites.contains(where : {$0.id == meal.id})){
+//        favorites.append(meal)
+//        }else{
+//            //print("Already in favorites! removing it now lol")
+//            if let index = favorites.firstIndex(of: meal){
+//                favorites.remove(at: index)
+//            }
+//        }
+//    }
+    
+    func addFavorite(meal: MealModel) {
+            if !favorites.contains(where: { $0.id == meal.id }) {
+                favorites.append(meal)
+                // Preload the image when adding to favorites
+                if let url = URL(string: meal.strMealThumb) {
+                    URLSession.shared.dataTask(with: url) { _, _, _ in }.resume()
+                }
+            } else {
+                if let index = favorites.firstIndex(where: { $0.id == meal.id }) {
+                    favorites.remove(at: index)
+                }
             }
         }
-    }
     
     func isFavorited(meal: MealModel) -> Bool{
         return favorites.contains(where : {$0.id == meal.id})
